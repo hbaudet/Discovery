@@ -14,4 +14,7 @@ include WEBrick
     siglist.each do |sig|
       Signal.trap(sig, shut)
     end
+    @test="truc"
+    puts @test
+    @list = { 1 => ["prenom", "nom", "age"] }
     s.start

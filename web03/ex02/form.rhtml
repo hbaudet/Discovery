@@ -1,0 +1,59 @@
+<!DOCTYPE rhtml>
+<html>
+<body>
+
+<form>
+  <label for="prenom">Prenom :</label><br>
+  <input type="text" id="prenom" name="prenom_n"><br>
+  <label for="nom">Nom :</label><br>
+  <input type="text" id="nom" name="nom_n"><br>
+  <label for="age">Age :</label><br>
+  <input type="number" id="age" name="age"><br>
+  <input type="submit" name="submitted" value="Submit">
+</form>
+
+<% person = Struct.new(:pre, :nom, :age) %>
+<% me = person.new %>
+
+<% me.pre = servlet_request.query['prenom_n']%>
+<% me.nom = servlet_request.query['nom_n']%>
+<% me.age = servlet_request.query['age']%>
+<% status = servlet_request.query['submitted']%>
+
+<% file = File.open("log.txt", "a") %>
+<% if status == 'Submit' &&  me.pre != '' %>
+  <p>Bonjour <%= me.pre %> <%= me.nom %>
+  <% if me.age == '' %>
+    <% me.age = 0 %>
+  <% end %>
+  <% if me.nom == '' %>
+    <% me.nom = '_' %>
+  <% end %>
+<% end %>
+<% file.write(me.age + " " + me.pre + " " + me.nom + "\n") %>
+<% file.close %>
+
+<% list = [person] %>
+<% list.clear %>
+
+<% file = File.open('log.txt') %>
+<% guy = person.new %>
+
+<% file.each do |line| %>
+  <p><%= line %></p>
+  <% tmp = line.split(" ") %>
+  <% guy.age = tmp[0] %>
+  <% guy.pre = tmp[1] %>
+  <% guy.nom = tmp[2] %>
+  <%list.append(guy)%>
+<% end %>
+
+<% for dude in list %>
+  <p><%= dude.age %></p>
+  <p><%= dude.pre %></p>
+  <p><%= dude.nom %></p>
+<% end %>
+
+<% file.close %>
+</body>
+</html>

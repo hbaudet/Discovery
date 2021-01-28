@@ -1,0 +1,18 @@
+<!DOCTYPE rhtml>
+<html>
+<body>
+
+<form>
+  <label for="prenom">Prenom :</label><br>
+  <input type="text" id="prenom" name="prenom_n"><br>
+  <label for="nom">Nom :</label><br>
+  <input type="text" id="nom" name="nom_n"><br>
+  <input type="submit" name="submitted" value="Submit">
+</form>
+
+<% if servlet_request.query['submitted'] == 'Submit' &&  servlet_request.query['prenom_n'] != '' %>
+  <p>Bonjour <%= servlet_request.query['prenom_n'] %> <%= servlet_request.query['nom_n'] %>
+<% end %>
+
+</body>
+</html>
