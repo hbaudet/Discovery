@@ -12,48 +12,23 @@
   <input type="submit" name="submitted" value="Submit">
 </form>
 
-<% person = Struct.new(:pre, :nom, :age) %>
-<% me = person.new %>
+<% pre = servlet_request.query['prenom_n'].to_s %>
+<% nom = servlet_request.query['nom_n'].to_s %>
+<% age = servlet_request.query['age'].to_i %>
+<% status = servlet_request.query['submitted'].to_s %>
+<% if status != "" && pre != "" %>
 
-<% me.pre = servlet_request.query['prenom_n']%>
-<% me.nom = servlet_request.query['nom_n']%>
-<% me.age = servlet_request.query['age']%>
-<% status = servlet_request.query['submitted']%>
+  <% hash = {:prenom => pre, :nom => nom, :age => age } %>
+  <% list = [ {:prenom => "Jean", :nom => "Michel", :age => 42 }, {:prenom => "Marc", :nom => "Dupont", :age => 51 }, {:prenom => "Gerard", :nom => "Lerouge", :age => 17 } ] %>
+  <% list << hash %>
 
-<% file = File.open("log.txt", "a") %>
-<% if status == 'Submit' &&  me.pre != '' %>
-  <p>Bonjour <%= me.pre %> <%= me.nom %>
-  <% if me.age == '' %>
-    <% me.age = 0 %>
-  <% end %>
-  <% if me.nom == '' %>
-    <% me.nom = '_' %>
-  <% end %>
+  <% count = 0 %>
+  <% list.sort_by { |dude| dude[:age] }.each do |dude| %>
+    <% if dude[:prenom] == pre && dude[:nom] == nom %>
+      <p>Bonjour <%= pre %>, tu es plus age que <%= count %> personnes, et moins age que <%= list.size - 1 - count %> personnes"</p>
+    <% end %>
+    <% count += 1 %>
+  <% end%>
 <% end %>
-<% file.write(me.age + " " + me.pre + " " + me.nom + "\n") %>
-<% file.close %>
-
-<% list = [person] %>
-<% list.clear %>
-
-<% file = File.open('log.txt') %>
-<% guy = person.new %>
-
-<% file.each do |line| %>
-  <p><%= line %></p>
-  <% tmp = line.split(" ") %>
-  <% guy.age = tmp[0] %>
-  <% guy.pre = tmp[1] %>
-  <% guy.nom = tmp[2] %>
-  <%list.append(guy)%>
-<% end %>
-
-<% for dude in list %>
-  <p><%= dude.age %></p>
-  <p><%= dude.pre %></p>
-  <p><%= dude.nom %></p>
-<% end %>
-
-<% file.close %>
 </body>
 </html>

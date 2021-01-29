@@ -1,7 +1,8 @@
-- Web 02  : exercice XX -> fichiers a rendre : xxx. R html
-- Web 03  : exercice 02 -> Quel est le fuck ?
+wesh wesh canne a peche!
+> fichiers a rendre : xxx. R html
+truc
 - Web 04  : exercice 03 -> 404
-- Web 04  : exercice 04 -> "fichier a rendre : formtofile.html" vs "Creez un fichier form2file.html"
+TRUC trop bien!!
 - Ruby 02 : exercice 01 -> "Si le nombre est egalE a zero" !!
 - Ruby 03 : exercice 02 -> inciter a utiliser un break au lieu de mettre la condition dans le while m'a donne envie de vomir
 - Ruby 03 : exercice 03 -> Le faire sans ARGV ? cf ruby05 ex 04

@@ -1,0 +1,21 @@
+<!DOCTYPE rhtml>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <% path = servlet_request.query['file'].to_s %>
+        <% if path != "" %>
+            <% file = File.open("web04/ex04/" + path, "a+") %>
+            <% file.readlines.each do |l| %>
+                <p><%= l.chomp %></p>
+            <% end %>
+            <% file.close %>
+        <% else %>
+            <p>Invalid file name!</p>
+        <% end %>
+
+
+        <a href="form2file.rhtml">Back to form</a>
+    </body>
+</html>

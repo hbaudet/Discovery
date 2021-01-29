@@ -1,0 +1,25 @@
+<!DOCTYPE rhtml>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form>
+            <label>Write Some Shit</label><br>
+            <input type="text" name="text"><br>
+            <input type="submit" name="submitted" value="Submit">
+        </form>
+
+        <% if servlet_request.query['submitted'].to_s == "Submit" %>
+
+            <% text = servlet_request.query['text'].to_s %>
+            <% file = File.open("web04/ex02/read_me.txt", "w") %>
+            <% file.puts text %>
+            <% file.close %>
+
+            <a href="show.rhtml">See your text</a>
+
+        <% end %>
+
+    </body>
+</html>

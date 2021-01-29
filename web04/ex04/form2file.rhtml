@@ -1,0 +1,39 @@
+<!DOCTYPE rhtml>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form>
+            <label>File name</label><br>
+            <input type="text" name="file"><br>
+            <label>Line number</label><br>
+            <input type="text" name="line"><br>
+            <label>Content</label><br>
+            <input type="text" name="content"><br>
+            <input type="submit" name="submitted" value="Submit">
+        </form>
+
+        <% path = servlet_request.query['file'].to_s %>
+        <% if servlet_request.query['submitted'].to_s == "Submit" && path != "" %>
+
+            <% content = servlet_request.query['content'].to_s %>
+            <% nb = servlet_request.query['line'].to_i %>
+            <% file = File.open("web04/ex04/" + path, "a+") %>
+            <% text = file.readlines %>
+            <% if text.size > nb %>
+                <% text[nb] = content %>
+            <% end %>
+            <% file.close %>
+            <% file = File.open("web04/ex04/" + path, "w") %>
+            <% file.puts text %>
+            <% file.close %>
+
+            <a href="show.rhtml?file=<%= path %>">See your text</a>
+        
+        <% else %>
+            <p>Invalid form!</p>
+        <% end %>
+
+    </body>
+</html>

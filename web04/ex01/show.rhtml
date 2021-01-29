@@ -1,0 +1,13 @@
+<!DOCTYPE rhtml>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <% file = File.open("web04/ex01/read_me.txt", "r") %>
+        <% file.readlines.each do |l| %>
+            <p><%= l.chomp %></p>
+        <% end %>
+        <% file.close %>
+    </body>
+</html>
