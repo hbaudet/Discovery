@@ -8,4 +8,8 @@
 - Ruby 05 : exercice 05 -> "Cherchez comment utiliser les conditions if" Il serait peut etre temps oui!
 - Ruby 05 : exercice 12 -> "Les chaînes de caractères sont aussi composées de cases, comme les arrays. Essayez!" -> Il faut passer par split(''), ca induit en erreur...
 - Ruby 05 : exercice 13 -> What if "isme" est au milieu du mot et pas a la fin ? Utiliser des regex ?! Pour une psicine Discovery ?!
-= Ruby 07 : exercice 02 dans l'exemple : "3ieme" au lieu de "3ème" (ok ,je chipote)
+- Ruby 07 : exercice 02 dans l'exemple : "3ieme" au lieu de "3ème" (ok ,je chipote)
+
+
+EST-CE QUE QUELQU'UN VEUT SE DEVOUER POUR ESSAYER LA RECETTE DE LA TARTIFLETTE DU PROJET RUBY ??
+Merci d'avance! =)
