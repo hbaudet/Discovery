@@ -56,11 +56,12 @@
         </div>
     </body>
     <script>
-        counter = 0;
-        imgs = ["x.png", "circle.png"];
-        last_id = 0;
-        tab = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        wins = ["tie", "x_won", "o_won"]
+        var counter = 0;
+        var imgs = ["x.png", "circle.png"];
+        var last_id = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var tab = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var wins = ["tie", "x_won", "o_won"];
+        var end = 0;
 
         function check_winner()
         {
@@ -83,13 +84,23 @@
             return wins[0];
         }
 
-        function change(id) {
-            console.log(id);
+        document.onkeypress = function (e) {
+            e = e || window.event;
+            if (e.key == "a" && counter > 0 && !end)
+            {
+                counter--;
+                document.getElementById(last_id[counter]).getElementsByTagName('IMG')[0].src = "empty.png";
+                tab[last_id[counter]] = 0;
+                last_id[counter] = 0;
+            }
+        };
 
-            if (counter < 9)
+
+
+        function change(id) {
+            if (counter < 9 && !end && tab[parseInt(id)] == 0)
             {
                 tab[parseInt(id)] = counter % 2 + 1;
-                console.log(tab);
                 elem = document.getElementById(id);
                 pic = elem.getElementsByTagName('IMG')[0];
 
@@ -97,16 +108,15 @@
 
                 if (path == "empty.png")
                 {
-                    console.log("cell is empty baby!");
                     pic.src = imgs[counter % 2];
                 }
+                last_id[counter] = parseInt(id);
                 counter++;
-                last_id = id;
                 winner = check_winner();
                 if (winner != "tie")
-                    counter = 9;
+                    end = 1;
             }
-            if (counter == 9)
+            if (end == 1)
                 document.getElementById(winner).style.display = "block";
         }
     </script>
